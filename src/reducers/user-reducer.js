@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useReducer } from "react";
-
-const currentUser = { authenticated: false };
+const loggedInUser = localStorage.getItem('user');
+const currentUser = loggedInUser===null? { authenticated: false }:{authenticated:true,loggedInUser};
 
 export const userReducer = createSlice({
   initialState: currentUser,

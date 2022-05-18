@@ -1,25 +1,26 @@
 import React, { useState } from "react";
-import { Card, Form, Input, Button, Checkbox } from "antd";
-import "./login_screen.css";
+import { Card, Form, Input, Button, Checkbox, Radio } from "antd";
+import "./register_screen.css";
 import { APIBASEURL, validateApiResponse } from "../../constants";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import bookBg from "../../books_login.png";
-import { signInWithEmailPassword } from "../../services/auth_service";
+import { signUpWithEmailPassword } from "../../services/auth_service";
 import { USER_LOGIN } from "../../reducers/user-reducer";
 import { useNavigate } from "react-router-dom";
-function LoginScreen() {
-  const navigate = useNavigate();
+function RegisterScreen() {
   const [loading, setloading] = useState(false);
   const dispatch = useDispatch();
-  const handleLogin = async (vals) => {
+  const navigate = useNavigate();
+  const handleRegister = async (vals) => {
     if (!loading) {
       try {
         setloading(true);
-
-        var res = await signInWithEmailPassword({
+        var res = await signUpWithEmailPassword({
           email: vals.email,
           password: vals.password,
+          name:vals.name,
+          type:vals.role === "user"?1:2
         });
         if (res !== null) {
           if (validateApiResponse(res)) {
@@ -27,8 +28,9 @@ function LoginScreen() {
           } else {
             //LOGGED IN
             console.log(res.r);
-            localStorage.setItem("user", res.r);
-            dispatch(USER_LOGIN(res.r));
+            // localStorage.setItem("user", res.r);
+            navigate('/dashboard',{replace:true});
+            // dispatch(USER_LOGIN(res.r));
             toast(res.m);
           }
         }
@@ -44,16 +46,23 @@ function LoginScreen() {
   return (
     <div>
       <div className="scaffold">
-        <Card style={{ margin: 20 }}>
+        <Card style={{ margin: 10 }}>
           <h2>Library Management System</h2>
-          <div className="subtitle">Sign in with Email and Password</div>
+          <div className="subtitle">Register with Email and Password</div>
           <div className="form">
             <Form
               name="basic"
-              onFinish={handleLogin}
-              onFinishFailed={() => {}}
               layout="vertical"
+              onFinish={handleRegister}
+              onFinishFailed={() => {}}
             >
+              <Form.Item
+                label="Name"
+                name="name"
+                rules={[{ required: true, message: "Please Provide Name" }]}
+              >
+                <Input type="text" />
+              </Form.Item>
               <Form.Item
                 label="Email"
                 name="email"
@@ -74,8 +83,11 @@ function LoginScreen() {
               >
                 <Input type="password" />
               </Form.Item>
-              <Form.Item name="remember" valuePropName="checked">
-                <Checkbox>Remember me</Checkbox>
+              <Form.Item initialValue={'user'} label="I am" name="role">
+                <Radio.Group>
+                  <Radio.Button value="librarian">Librarian</Radio.Button>
+                  <Radio.Button value="user">User</Radio.Button>
+                </Radio.Group>
               </Form.Item>
               <Form.Item
                 wrapperCol={{
@@ -83,19 +95,19 @@ function LoginScreen() {
                 }}
               >
                 <Button type="primary" htmlType="submit" loading={loading}>
-                  Login
+                  Register
                 </Button>
               </Form.Item>
               <div className="linkBtnContainer">
-                Don't have an account?
+                Already have an account?
                 <Button
                   className="linkBtn"
                   type="link"
                   onClick={() => {
-                    navigate("/register", { replace: false });
+                    navigate("/login");
                   }}
                 >
-                  {"Register"}
+                  {"Login"}
                 </Button>
               </div>
             </Form>
@@ -109,4 +121,4 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+export default RegisterScreen;
