@@ -1,21 +1,21 @@
 import { Spin } from "antd";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { USER_LOGIN } from "../../reducers/user-reducer";
 function AutoLogin() {
-  const dispatch = useDispatch();
+  const state = useSelector((state) => state.user_reducer);
   let navigate = useNavigate();
   useEffect(() => {
-    let userData = localStorage.getItem("user");
-    console.log(userData);
-    if (userData === null) {
+    console.log(state);
+    if (!state.authenticated) {
+      
+      console.log('Not Authenticated');
       navigate("/login", { replace: true });
     } else {
-      dispatch(USER_LOGIN(userData));
       navigate("/dashboard", { replace: true });
-      toast("Already Logged In");
+      console.log("Already Logged In");
     }
     // setInterval(() => {
     //     navigate("/login",{replace:true});

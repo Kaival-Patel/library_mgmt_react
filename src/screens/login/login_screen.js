@@ -22,13 +22,13 @@ function LoginScreen() {
           password: vals.password,
         });
         if (res !== null) {
-          if (validateApiResponse(res)) {
+          if (!validateApiResponse(res)) {
             toast(res.m);
           } else {
             //LOGGED IN
             console.log(res.r);
-            localStorage.setItem("user", res.r);
             dispatch(USER_LOGIN(res.r));
+            navigate('/dashboard');
             toast(res.m);
           }
         }

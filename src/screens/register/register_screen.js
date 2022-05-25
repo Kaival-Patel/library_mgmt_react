@@ -19,18 +19,17 @@ function RegisterScreen() {
         var res = await signUpWithEmailPassword({
           email: vals.email,
           password: vals.password,
-          name:vals.name,
-          type:vals.role === "user"?1:2
+          name: vals.name,
+          type: vals.role === "user" ? 1 : 2,
         });
         if (res !== null) {
-          if (validateApiResponse(res)) {
+          if (!validateApiResponse(res)) {
             toast(res.m);
           } else {
             //LOGGED IN
             console.log(res.r);
-            // localStorage.setItem("user", res.r);
-            navigate('/dashboard',{replace:true});
-            // dispatch(USER_LOGIN(res.r));
+            dispatch(USER_LOGIN(res.r));
+            navigate("/dashboard", { replace: true });
             toast(res.m);
           }
         }
@@ -83,7 +82,7 @@ function RegisterScreen() {
               >
                 <Input type="password" />
               </Form.Item>
-              <Form.Item initialValue={'user'} label="I am" name="role">
+              <Form.Item initialValue={"user"} label="I am" name="role">
                 <Radio.Group>
                   <Radio.Button value="librarian">Librarian</Radio.Button>
                   <Radio.Button value="user">User</Radio.Button>

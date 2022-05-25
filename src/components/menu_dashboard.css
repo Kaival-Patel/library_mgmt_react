@@ -1,0 +1,19 @@
+.scaffold {
+  flex: 5;
+  justify-content: flex-start;
+  flex-direction: row;
+  height: fit-content;
+}
+.ant-menu-horizontal > .ant-menu-item:hover,
+.ant-menu-horizontal > .ant-menu-submenu:hover,
+.ant-menu-horizontal > .ant-menu-item-active,
+.ant-menu-horizontal > .ant-menu-submenu-active,
+.ant-menu-horizontal > .ant-menu-item-open,
+.ant-menu-horizontal > .ant-menu-submenu-open,
+.ant-menu-horizontal {
+  color: gray;
+  font-weight: bold;
+}
+.ant-menu-horizontal > .ant-menu-item-selected {
+  font-weight: bold;
+}

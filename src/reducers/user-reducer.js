@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useReducer } from "react";
-const loggedInUser = localStorage.getItem('user');
-const currentUser = loggedInUser===null? { authenticated: false }:{authenticated:true,loggedInUser};
+const loggedInUser = localStorage.getItem("user");
+const currentUser =
+  loggedInUser === null
+    ? { authenticated: false }
+    : { authenticated: true, user: JSON.parse(loggedInUser) };
 
 export const userReducer = createSlice({
   initialState: currentUser,
@@ -9,13 +12,17 @@ export const userReducer = createSlice({
   reducers: {
     USER_LOGIN: (state, payload) => {
       console.log(payload);
-      state = { ...payload, authenticated: true };
-      console.log("UPDATED STATE ==>" + state);
+      localStorage.setItem("user", JSON.stringify(payload.payload));
+      state = { user: payload.payload, authenticated: true };
+      console.log("UPDATED STATE ==>" + JSON.stringify(payload.payload));
+      return state;
     },
     USER_LOGOUT: (state, payload) => {
       console.log("LOGOUT REDUCER");
-      state = { authenticated: false };
-      console.log("UPDATED STATE=>" + state);
+      state = {user:{},authenticated: false };
+      localStorage.removeItem("user");
+      console.log("UPDATED STATE=>" + JSON.stringify(state));
+      return state;
     },
   },
 });

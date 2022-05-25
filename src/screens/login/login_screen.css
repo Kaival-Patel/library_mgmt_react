@@ -3,11 +3,16 @@
   height: 100vh;
   position: relative;
   flex: 1;
+  font-family: 'TTNorms';
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.scaffold>h2{
+  font-weight: bold;
 }
 
 .subtitle {

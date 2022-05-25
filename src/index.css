@@ -6,7 +6,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+@font-face {
+  font-family: 'TTNorms';
+  font-weight: normal;
+  src: url("./fonts/TTNorms-Regular.otf");
+}
+@font-face {
+  font-family: 'TTNorms';
+  font-weight: bold;
+  src: url("./fonts/TTNorms-Bold.otf");
+}
+@font-face {
+  font-family: 'TTNorms';
+  font-weight: 300;
+  src: url("./fonts/TTNorms-Medium.otf");
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
