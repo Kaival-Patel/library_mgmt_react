@@ -2,9 +2,17 @@
   display: flex;
   top: 0;
   flex-direction: row;
+  padding-right: 30px;
 }
-.body{
+.body {
   padding-left: 30px;
   padding-right: 30px;
-
+}
+.main_content {
+  flex: 4;
+}
+.scaffold {
+  flex: 1;
+  align-items: flex-start;
+  display: flex;
 }

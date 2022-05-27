@@ -6,15 +6,17 @@
     flex-direction: row;
     padding: 10px;
     margin: 10px;
-    height: 200px;
+    height: 250px;
     display: flex;
     align-items: center;
     border-radius: 10px;
     box-shadow: 2px 2px 20px lightgray;
 }
 .bookCover{
-    object-fit: fit;
-    height: 80%;
+    object-fit: cover;
+    height: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
     width: 25%;
 }
 .bookContent{
