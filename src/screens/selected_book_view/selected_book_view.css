@@ -23,8 +23,79 @@
 }
 .about_book{
     flex: 1;
+    height: 100vh;
+    color: white;
+    background-color: #1A1A23;
 }
 .header_title{
     font-weight: bold;
-    margin-top: 80px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.book_view{
+  height: 200px;
+  width: 150px;
+  object-fit: cover;
+}
+.book_title{
+  text-align: center;
+  align-content: center;
+  margin-top: 20px;
+  color: #FDFDFD;
+}
+.header_title{
+  color: #FDFDFD;
+}
+.book_author{
+  color: gray;
+}
+.book_info{
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #262938;
+  display: flex;
+  width: 90%;
+  margin: 10px;
+  flex-direction: row;
+}
+.book_info_bar{
+    flex-direction: column;
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+.book_info_bar>h4{
+  font-weight: bold;
+  font-size: 22px;
+  color: white;
+}
+.book_info_bar>h5{
+  color: gray;
+}
+.divider{
+  height: 20px;
+  border: 0.1px solid gray;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+.read_btn{
+  border-radius: 20px;
+  padding-left: 20px;
+  margin-top: 10px;
+  width: 90%;
+  padding-top: 12px;
+  padding-bottom: 2px;
+  padding-right: 20px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #4A80F0;
+}
+.read_btn:hover{
+  background-color: #6692ed;
+  cursor: pointer;
+}
+.read_btn>h3{
+  font-weight: bold;
+  color:white
 }
